@@ -2,7 +2,7 @@ export const site = {
   name: 'VELYQUA',
   localised: '维澜',
   tagline: 'Intelligence for living water',
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://velyqua.com',
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://velyqua-website.vercel.app',
   appUrl: process.env.NEXT_PUBLIC_APP_URL ?? 'https://velyqua.vercel.app',
   github: 'https://github.com/AndrewLamSingapore/velyqua-website',
   appGithub: 'https://github.com/AndrewLamSingapore/velyqua',
