@@ -1,38 +1,41 @@
 # VELYQUA — Verified Deployment Report
 
-**25 November 2026 · `DESKTOP-IPV4PH9` (Dell workstation)**
+**Checkpoint: 25 November 2026 · `DESKTOP-IPV4PH9` (Dell workstation)**
+
+## Live surfaces (verified)
+
+| Surface | URL | State |
+| --- | --- | --- |
+| Marketing — Vercel production | https://velyqua-website.vercel.app/ | 200, Vercel (`x-vercel-id`), security header `X-Content-Type-Options: nosniff`, all sections present |
+| Marketing — GitHub Pages preview | https://andrewlamsingapore.github.io/velyqua-website/ | 200, auto-deploys from main |
+| AI platform — production | https://velyqua.vercel.app/ | 200; `/api/health` → `{"ok":true,"service":"velyqua","product_version":"0.4.0"}` |
 
 ## Verified results
 
 | Area | Result |
 | --- | --- |
-| Repository audit | Marketing site inspected as `AndrewLamSingapore/velyqua-website` (public, main); app inspected as `AndrewLamSingapore/velyqua` (untouched) |
-| Secret exposure | 0 secret-scanning alerts on both repos; source scan found only env-var names and `.env.example` placeholders — no credentials committed |
-| Build | `next build` passes with type checking on `main` (GitHub CI green) |
-| Preview URL | Live at https://andrewlamsingapore.github.io/velyqua-website/ (GitHub Pages, static export) |
-| Playwright | 10/10 passing locally; E2E workflow green on GitHub |
-| Responsive | No horizontal overflow at 1440×900 and Pixel 7 (390×844) |
-| Navigation | All section anchors and the "Open VELYQUA" app link verified |
-| Accessibility | Single `h1`, landmark structure, labelled controls, `:focus-visible`, `prefers-reduced-motion` |
-| SEO | Title/description, Open Graph, Twitter card, canonical, JSON-LD, `sitemap.xml`, `robots.txt` all present and resolvable |
-| Design system | Canonical tokens in `design/tokens.json`; full spec in `docs/DESIGN-SYSTEM.md` |
-| Monitoring / checks | CI (build gate), E2E (Playwright), Dependabot, Vercel deploy workflow (manual trigger) |
-| Rollback | GitHub Pages + Vercel both support instant redeploy/rollback; workflow history retained |
+| Vercel production | Connected and deployed by the owner; latest `main` auto-deploys (~39 s) |
+| Playwright | 10/10 passing locally and against the live Vercel production URL (desktop + Pixel 7) |
+| Navigation | Marketing "Open VELYQUA" → live app (verified href); app → marketing return link merged (PR #111) |
+| Responsive | No horizontal overflow at 1440×900 and 390×844 |
+| Accessibility | Single `h1`, landmarks, labelled controls, `:focus-visible`, `prefers-reduced-motion` |
+| SEO | Title/description, Open Graph, Twitter, canonical, JSON-LD, `sitemap.xml`, `robots.txt` |
+| Analytics | `@vercel/analytics` + `@vercel/speed-insights` mounted |
+| Security | 0 secret-scanning alerts both repos; no credentials in source |
+| CI/CD | CI (build) + E2E green on `main`; Dependabot grouped with major-bump ignores; stale PRs closed |
+| Design system | Canonical tokens in `design/tokens.json`; app `src/theme.ts` rewired to shared `src/brand/tokens.ts` (zero visual change) |
 
-## Outstanding issues
+## Resolved this session
 
-1. **Vercel is not authenticated on this machine** (no CLI, no token, no saved login). Production and preview deployments on Vercel require your one-time Vercel login or connecting the repo in the Vercel dashboard. A manual Vercel deploy workflow is staged for the moment the three `VERCEL_*` secrets are added.
-2. **Supabase is not authenticated on this machine.** The exact Auth URL changes are prepared in `VELYQUA-Supabase-and-Domain-Config.md` but must be applied by you in the Supabase dashboard.
-3. **Dependabot opened separate PRs for `react` and `react-dom` (19.0.0 → 19.3.1), both failing CI** on a peer-dependency conflict (react-dom 19.3.1 requires react ≥ 19.3.1). Fixed by grouping `react` + `react-dom` in `dependabot.yml`; review and merge the next combined PR.
-4. **App-side design-system remap and the app → marketing back-link are prepared but deliberately not applied** to the production app (visual-review + approval required). The canonical tokens the app should adopt are in `design/tokens.json`.
+- Fixed E2E false-failure: Vercel Analytics/Speed Insights scripts 404 only off-Vercel; the test now tolerates those and stays strict on Vercel.
+- Merged app PR #111 (shared tokens + "VELYQUA home" return link) to `main`; app production auto-deploys.
+- Closed stale/broken Dependabot PRs (Expo/React Native major SDK bumps in the app; Tailwind 4.x, TypeScript 7.x, Next 16, @types/node 26, action majors in marketing) and added Dependabot ignores for the breaking majors.
 
-## Exact remaining steps (in order)
+## Outstanding (owner-gated, no action taken)
 
-1. You: connect `AndrewLamSingapore/velyqua-website` to Vercel (or add `VERCEL_TOKEN` / `VERCEL_ORG_ID` / `VERCEL_PROJECT_ID` to GitHub secrets) — enables production previews + rollback.
-2. You: add `app.velyqua.com` to the existing app's Vercel project.
-3. You: update Supabase Auth Site URL + Redirect URLs per `VELYQUA-Supabase-and-Domain-Config.md`.
-4. Test the checklist in `docs/UNIFICATION.md` §6 against the Vercel preview URLs.
-5. You: after approval, change DNS per §3 of the domain config and set `NEXT_PUBLIC_SITE_URL` / `NEXT_PUBLIC_APP_URL`.
-6. You: approve the app-side design-system + back-link change for the unified experience.
+1. **Vercel domains:** add `velyqua.com` (marketing) and `app.velyqua.com` (app) in Vercel; then DNS per `SUPABASE-AND-DOMAIN.md`.
+2. **Supabase Auth:** add `https://app.velyqua.com` to Site URL + Redirect URLs (keep `velyqua.vercel.app` until cutover).
+3. **App docs PRs:** #107 (draft), #108 (draft), #109 (cloud-support presentation + GCP architecture) — owner decision on merge/close.
+4. **Visual enhancement phase:** planned in `VELYQUA-Visual-Enhancement-Plan.md`; not yet implemented.
 
-No production DNS, auth settings, resources or the live `velyqua.vercel.app` application have been changed or deleted.
+No production DNS, primary auth settings, resources, or the live app's data were changed or deleted.
