@@ -37,6 +37,8 @@ All links are centralised in `lib/site.ts`.
 - `design/tokens.json` — canonical colour / type / spacing / motion tokens shared with the app.
 - `docs/DESIGN-SYSTEM.md` — full art direction and component / motion spec.
 - `docs/UNIFICATION.md` — target architecture, technical conflicts and production rollout checklist.
+- `docs/SUPABASE-AND-DOMAIN.md` — exact Supabase Auth and DNS steps for `app.velyqua.com`.
+- `docs/DEPLOYMENT-REPORT.md` — verified deployment status, outstanding issues and remaining steps.
 
 ## Deploy
 
