@@ -2,6 +2,12 @@
 
 **Decision record · 25 November 2026 · Prepared on `DESKTOP-IPV4PH9` (Dell workstation)**
 
+> **Current state (free tier):** no custom domain is owned. Marketing runs at
+> `https://velyqua-website.vercel.app` and the AI platform stays at
+> `https://velyqua.vercel.app`. Custom domains (`velyqua.com` / `app.velyqua.com`)
+> and the Supabase Site-URL switch are **deferred** until the domain is purchased,
+> DNS is configured and HTTPS is verified.
+
 This document records the inspected reality of both codebases, the target architecture, the technical conflicts found, and the phased, production-safe rollout.
 
 ---

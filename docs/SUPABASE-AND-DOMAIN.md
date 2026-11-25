@@ -1,6 +1,11 @@
 # VELYQUA — Custom Domain & Supabase Auth Configuration
 
-**Prepared 25 November 2026 · apply only after preview testing is approved · do not change production DNS yet**
+**Prepared 25 November 2026 · DEFERRED — applies only after `velyqua.com` is purchased and DNS/HTTPS verified · do not change production DNS or Supabase settings before that**
+
+> The current production architecture uses free Vercel subdomains
+> (`https://velyqua-website.vercel.app` and `https://velyqua.vercel.app`) and
+> requires **no** domain purchase and **no** Supabase changes. The steps below are
+> the future migration sequence to run once the domain is owned.
 
 This is the exact configuration required for the finalized subdomain architecture. None of it has been applied — applying it needs your Supabase and Vercel account access.
 
