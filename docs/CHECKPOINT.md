@@ -33,3 +33,11 @@
 
 - Source: `outputs/velyqua-website/` (committed to GitHub).
 - Reference clone: `work/velyqua-sweep/` (app repo; local branch `unify/design-system` was merged and deleted remotely — reset to `main` when next needed).
+
+## Final pass (25 Nov) — everything verified end to end
+
+- App return navigation now targets the **live** marketing URL (`https://velyqua-website.vercel.app/`) via merged PR #112; verified by Playwright: clicking "VELYQUA home" opens the marketing production site.
+- Marketing `NEXT_PUBLIC_SITE_URL` default changed to the live Vercel URL, so canonical/OG/sitemap/robots match reality until `velyqua.com` is cut over.
+- React group update (react + react-dom 19.3.1) merged (PR #15); Playwright 10/10 against production after the upgrade.
+- Stale/broken PRs closed; orphaned Dependabot branches deleted; both repos now have clean PR/branch state.
+- App production revision verified as the latest merge commit; `/api/health` → `ok: true`.
