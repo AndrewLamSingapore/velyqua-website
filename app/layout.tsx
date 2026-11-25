@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { IBM_Plex_Mono, Instrument_Serif, Inter, Space_Grotesk } from 'next/font/google';
 import './globals.css';
 import { site } from '@/lib/site';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 const body = Inter({ subsets: ['latin'], variable: '--font-body', display: 'swap' });
 const display = Space_Grotesk({ subsets: ['latin'], variable: '--font-display', display: 'swap' });
@@ -50,6 +52,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${body.variable} ${display.variable} ${mono.variable} ${serif.variable}`}>
       <body className="font-body">
         {children}
+        <Analytics />
+        <SpeedInsights />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
