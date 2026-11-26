@@ -1,3 +1,5 @@
+> **Supersession · 26 November 2026:** The website is now deployed at https://velyqua-website.vercel.app/, and the app return link/shared tokens are merged. The [25 November deployment report](DEPLOYMENT-REPORT.md) supersedes the earlier "connect a new Vercel project" and "app navigation not pushed" steps below. The custom-domain and Supabase redirect plan remains separate; use the current Vercel URLs until a verified cutover. Earlier planning details are retained as dated context.
+
 # VELYQUA — Unified Website & AI Platform
 
 **Decision record · 25 November 2026 · Prepared on `DESKTOP-IPV4PH9` (Dell workstation)**

@@ -1,10 +1,12 @@
 # VELYQUA — Marketing & product site
 
-An ultra-premium, cinematic single-page site for **VELYQUA 维澜** ("Intelligence for Living Water"), prepared for implementation with **Next.js (App Router)**, **Tailwind CSS**, **GSAP** and **Three.js**.
+The deployed cinematic product website for **VELYQUA 维澜** ("Intelligence for Living Water"), built with **Next.js (App Router)**, **TypeScript**, **Tailwind CSS**, **GSAP** and **Three.js**.
+
+[**Explore VELYQUA**](https://velyqua-website.vercel.app/) · [**Open the aquarium app**](https://velyqua.vercel.app/) · [**Architecture Studio**](https://velyqua-workspace.five12345.chatgpt.site/) · [**Portfolio and contact**](https://authority-engine-app.vercel.app/velyqua)
 
 The site is grounded in the real product: it presents the shipped capabilities (Aqua Now, Quick Update, Tank Memory, Try a Change) and clearly labels research directions (computer vision, precision aquaculture) rather than presenting plans as products.
 
-This repository is the **marketing surface** of the unified VELYQUA experience. The AI platform itself lives in `AndrewLamSingapore/velyqua` and is reached from this site at `NEXT_PUBLIC_APP_URL`.
+This repository is the **marketing surface** of the unified VELYQUA experience. The working aquarium application lives in [`AndrewLamSingapore/velyqua`](https://github.com/AndrewLamSingapore/velyqua) and is reached from this site at `NEXT_PUBLIC_APP_URL`.
 
 ## Run it
 
@@ -27,8 +29,8 @@ Open [http://localhost:3000](http://localhost:3000). Production build: `npm run 
 
 | Variable | Default | Purpose |
 | --- | --- | --- |
-| `NEXT_PUBLIC_SITE_URL` | `https://velyqua.com` | Canonical / OG / sitemap origin |
-| `NEXT_PUBLIC_APP_URL` | `https://velyqua.vercel.app` | Where "Open VELYQUA" links point (flip to `https://app.velyqua.com` at cutover) |
+| `NEXT_PUBLIC_SITE_URL` | `https://velyqua-website.vercel.app` | Current canonical / OG / sitemap origin |
+| `NEXT_PUBLIC_APP_URL` | `https://velyqua.vercel.app` | Current application destination; custom-domain cutover requires separate DNS and auth verification |
 
 All links are centralised in `lib/site.ts`.
 
@@ -42,7 +44,7 @@ All links are centralised in `lib/site.ts`.
 
 ## Deploy
 
-Connect this repository to a new Vercel project for automatic preview deployments on every pull request and one-click rollbacks in the Vercel dashboard. `.github/workflows/ci.yml` runs a build gate on every push and pull request; Dependabot keeps dependencies current.
+This repository is already connected to its existing Vercel project at `velyqua-website.vercel.app`. Reuse that project for previews, production releases and rollback; do not create a second project for routine updates. `.github/workflows/ci.yml` runs a build gate on every push and pull request; Dependabot keeps dependencies current.
 
 ## Structure
 
@@ -63,3 +65,9 @@ docs/           design system + unification plan
 - Every data surface carries an honesty label (illustrative example, research direction, not live telemetry).
 - `prefers-reduced-motion` is respected (the Three.js scene renders a static frame; the marquee is disabled).
 - Accessibility: `:focus-visible` ring, aria labels on icon-only controls, high-contrast text on abyss.
+
+## Current public boundaries
+
+The application supports manual water tests, observations, care history and account-scoped sync. Computer vision, individual-animal histories, physical sensing performance and intervention outcomes remain research and validation goals. Animated values are illustrative. `velyqua.com` and `app.velyqua.com` remain a separate domain plan in these deployment documents; the verified Vercel destinations above remain the public links.
+
+[All repository profiles](https://authority-engine-app.vercel.app/#repositories) · [Application source](https://github.com/AndrewLamSingapore/velyqua) · [Product and deployment evidence](docs/DEPLOYMENT-REPORT.md)
